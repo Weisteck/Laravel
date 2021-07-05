@@ -28,68 +28,66 @@ class OrganisationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
-        //
+        Organisation::query()->create([
+            'id' => Str::uuid(),
+            'slug' => $request->slug,
+            'name' => $request->name,
+            'email' => $request->email,
+            'tel' => $request->tel,
+            'address' => $request->address,
+            'type' => $request->type
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return View|Factory|Application
      *
-     **/
+     */
     public function show(int $id): View|Factory|Application
     {
-    $organisation = DB::table('organisations')->where('id', $id)->first();
+        $organisation = DB::table('organisations')->where('id', $id)->first();
 
-    return view('organisation.index', ['organisation' => $organisation]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param string $id
+     * @return \Illuminate\Database\Query\Builder|Model|object
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        Organisation::find($id)
+
+        $organisation->slug => $request->slug;
+        $organisation->name => $request->name;
+        $organisation->email => $request->email;
+        $organisation->tel => $request->tel;
+        $organisation->address => $request->address;
+        $organisation->type => $request->type;
+
+        $organisation->save();
+
+        return $organisation;
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {
