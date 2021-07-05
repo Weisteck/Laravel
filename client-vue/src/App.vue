@@ -1,17 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{data}}
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {api} from "./api/config";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      data:[]
+    }
+  },
+  methods: {
+    async getData() {
+      try {
+        const response = await api.get('/organisations')
+        console.log(response)
+        this.data = response.data
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  },
+  created() {
+    this.getData()
   }
 }
 </script>
