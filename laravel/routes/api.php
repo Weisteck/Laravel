@@ -19,4 +19,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('organisations', \App\Http\Controllers\OrganisationController::class);

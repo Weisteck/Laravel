@@ -20,11 +20,11 @@ class OrganisationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Collection | Builder[]
+     * @return Application|Factory|View
      */
-    public function index(): array|Collection
+    public function index(): Application|Factory|View
     {
-        return Organisation::query()->with('missions')->get();
+        return view('organisation.index', ['organisations' => Organisation::all()]);
     }
 
     /**
@@ -68,19 +68,18 @@ class OrganisationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Organisation::find($id)
+        $organisation = Organisation::find($id);
 
-        $organisation->slug => $request->slug;
-        $organisation->name => $request->name;
-        $organisation->email => $request->email;
-        $organisation->tel => $request->tel;
-        $organisation->address => $request->address;
-        $organisation->type => $request->type;
+        $organisation->slug = $request->slug;
+        $organisation->name = $request->name;
+        $organisation->email = $request->email;
+        $organisation->tel = $request->tel;
+        $organisation->address = $request->address;
+        $organisation->type = $request->type;
 
         $organisation->save();
 
-        return $organisation;
-
+        return view('organisation.index', ['organisations' => Organisation::find($id)]);
     }
 
     /**

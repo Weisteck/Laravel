@@ -1,18 +1,22 @@
 <table>
     <tr>
         <th>Id</th>
-        <th>Id</th>
-        <th>Id</th>
-        <th>Id</th>
-        <th>Id</th>
+        <th>Slug</th>
+        <th>name</th>
+        <th>email</th>
+        <th>tel</th>
+        <th>address</th>
+        <th>type</th>
     </tr>
     @foreach($organisations as $organisation)
     <tr>
         <td>{{$organisation->id}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{$organisation->slug}}</td>
+        <td>{{$organisation->name}}</td>
+        <td>{{$organisation->email}}</td>
+        <td>{{$organisation->tel}}</td>
+        <td>{{$organisation->address}}</td>
+        <td>{{$organisation->type}}</td>
     </tr>
     @endforeach
 </table>
