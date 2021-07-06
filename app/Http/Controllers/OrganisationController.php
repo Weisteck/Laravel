@@ -36,7 +36,6 @@ class OrganisationController extends Controller
     public function store(Request $request)
     {
         Organisation::query()->create([
-            'id' => Str::uuid(),
             'slug' => $request->slug,
             'name' => $request->name,
             'email' => $request->email,

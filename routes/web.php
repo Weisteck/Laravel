@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\OrganisationController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\MissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('organisations', \App\Http\Controllers\OrganisationController::class);
+Route::resource('organisations', OrganisationController::class);
+Route::resource('/organisations/{organisation}/missions', MissionController::class);
