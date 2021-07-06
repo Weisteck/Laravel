@@ -24,7 +24,7 @@ class OrganisationController extends Controller
      */
     public function index(): Application|Factory|View
     {
-        return view('organisation.index', ['organisations' => Organisation::all()]);
+        return view('organisation/index', ['organisations' => Organisation::all()]);
     }
 
     /**
@@ -55,18 +55,18 @@ class OrganisationController extends Controller
      */
     public function show(int $id): View|Factory|Application
     {
-        $organisation = DB::table('organisations')->where('id', $id)->first();
-
+        $organisation = Organisation::find($id);
+        return view('organisation/index', ['organisations' => $organisation]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param string $id
+     * @param int $id
      * @return \Illuminate\Database\Query\Builder|Model|object
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
         $organisation = Organisation::find($id);
 
@@ -79,17 +79,19 @@ class OrganisationController extends Controller
 
         $organisation->save();
 
-        return view('organisation.index', ['organisations' => Organisation::find($id)]);
+        return redirect()->route('organisation.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        $organisation = Organisation::find($id);
+        $organisation->delete();
+        return redirect()->route('organisation.index');
     }
 }

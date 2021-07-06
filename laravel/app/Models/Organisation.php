@@ -13,8 +13,8 @@ class Organisation extends Model
 {
     use HasFactory;
 
-    public bool $incremented = false;
-    protected $keyType = 'uuid';
+/*    public bool $incremented = false;
+    protected $keyType = 'uuid';*/
     protected $fillable = ['id', 'slug', 'name', 'email', 'tel', 'address', 'type'];
 
     public function missions(): HasMany

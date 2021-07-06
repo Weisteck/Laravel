@@ -111,6 +111,17 @@
       <path value="$PROJECT_DIR$/laravel/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/laravel/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/laravel/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/laravel/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/laravel/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/laravel/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/laravel/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/laravel/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/laravel/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/laravel/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/laravel/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/laravel/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/laravel/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/laravel/vendor/seld/phar-utils" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
