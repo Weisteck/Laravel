@@ -3,7 +3,7 @@
 use App\Http\Controllers\OrganisationController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MissionController;
-
+use \App\Models\MissionLine;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::resource('organisations', OrganisationController::class);
-Route::resource('/organisations/{organisation}/missions', MissionController::class);
+Route::resource('/organisations/{organisation}/missions', MissionController::class, ['only'=>['create', 'store']]);
+Route::resource('/missions', MissionController::class, ['except'=>['create', 'store']]);
+Route::resource('/organisations/{organisation}/missions/{missions}/lines', MissionLine::class);

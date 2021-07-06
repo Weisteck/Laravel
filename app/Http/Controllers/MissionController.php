@@ -33,16 +33,23 @@ class MissionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, Organisation $organisation)
     {
-        $organisation->missions()->create([
+        /**
+         * @var Mission $mission
+         */
+        $mission = $organisation->missions()->create([
             'reference' => $request->reference,
             'title' => $request->title,
             'comment' => $request->comment,
             'deposit' => $request->deposit
         ]);
+
+        $mission->lines()->createMany($request->missions_lines);
+
+        return redirect()->route('mission.index');
     }
 
     /**

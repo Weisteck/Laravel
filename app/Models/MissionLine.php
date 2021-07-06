@@ -10,4 +10,9 @@ class MissionLine extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function mission()
+    {
+        return $this->belongsTo(Mission::class);
+    }
 }
