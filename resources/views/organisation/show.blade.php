@@ -31,8 +31,9 @@
         </button>
         <br>
         <br>
-        <form method="POST" action="{{route('organisations.update', 'organisation.id')}}" v-if="showForm">
+        <form method="POST" action="{{route('organisations.update', $organisation->id)}}" v-if="showForm">
             @csrf
+            @method('PUT')
             <label>
                 Slug
                 <br>

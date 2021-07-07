@@ -73,7 +73,7 @@ class OrganisationController extends Controller
         $organisation->slug = $request->slug;
         $organisation->name = $request->name;
         $organisation->email = $request->email;
-        $organisation->tel = $request->tel;
+        $organisation->phone = $request->phone;
         $organisation->address = $request->address;
         $organisation->type = $request->type;
 
