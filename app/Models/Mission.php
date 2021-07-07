@@ -15,6 +15,9 @@ class Mission extends Model
 {
     use HasFactory;
 
+    // opposer de filliable
+    protected $guarded = [];
+
     public function organisation(): BelongsTo
     {
         return $this->belongsTo(Organisation::class);

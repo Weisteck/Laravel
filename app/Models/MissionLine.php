@@ -11,6 +11,9 @@ class MissionLine extends Model
 
     public $timestamps = false;
 
+    // opposer de filliable
+    protected $guarded = [];
+
     public function mission()
     {
         return $this->belongsTo(Mission::class);

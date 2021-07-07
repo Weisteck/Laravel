@@ -55,7 +55,7 @@ class OrganisationController extends Controller
     public function show(int $id): View|Factory|Application
     {
         $organisation = Organisation::find($id);
-        return view('organisation/index', ['organisations' => $organisation]);
+        return view('organisation/show', ['organisation' => $organisation]);
     }
 
     /**

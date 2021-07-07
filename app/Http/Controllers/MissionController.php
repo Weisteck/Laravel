@@ -22,11 +22,11 @@ class MissionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create(Request $request)
+    public function create(Request $request, Organisation $organisation)
     {
-        //
+        return view('mission/create', ['organisation' => $organisation]);
     }
 
     /**
@@ -37,19 +37,21 @@ class MissionController extends Controller
      */
     public function store(Request $request, Organisation $organisation)
     {
+//        dd($request);
         /**
          * @var Mission $mission
          */
         $mission = $organisation->missions()->create([
-            'reference' => $request->reference,
-            'title' => $request->title,
-            'comment' => $request->comment,
-            'deposit' => $request->deposit
+            'reference' => $request->input('reference'),
+            'title' => $request->input('title'),
+            'comment' => $request->input('comment'),
+            'deposit' => $request->input('deposit'),
+            'ended_at' => $request->input('ended_at')
         ]);
 
-        $mission->lines()->createMany($request->missions_lines);
-
-        return redirect()->route('mission.index');
+        $mission->lines()->createMany($request->mission_lines);
+        // a modifier ou pas a voir
+        return redirect()->route('organisation.index');
     }
 
     /**
