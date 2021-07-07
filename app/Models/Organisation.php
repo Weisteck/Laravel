@@ -15,7 +15,7 @@ class Organisation extends Model
 
 /*    public bool $incremented = false;
     protected $keyType = 'uuid';*/
-    protected $fillable = ['id', 'slug', 'name', 'email', 'tel', 'address', 'type'];
+    protected $fillable = ['id', 'slug', 'name', 'email', 'phone', 'address', 'type'];
 
     public function missions(): HasMany
     {

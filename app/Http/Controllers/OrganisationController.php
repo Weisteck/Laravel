@@ -31,18 +31,19 @@ class OrganisationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        Organisation::query()->create([
+        $var = Organisation::create([
             'slug' => $request->slug,
             'name' => $request->name,
             'email' => $request->email,
-            'tel' => $request->tel,
+            'phone' => $request->phone,
             'address' => $request->address,
             'type' => $request->type
         ]);
+        return redirect()->route('organisations.index');
     }
 
     /**
@@ -78,7 +79,7 @@ class OrganisationController extends Controller
 
         $organisation->save();
 
-        return redirect()->route('organisation.index');
+        return redirect()->route('organisations.index');
     }
 
     /**
@@ -91,6 +92,6 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::find($id);
         $organisation->delete();
-        return redirect()->route('organisation.index');
+        return redirect()->route('organisations.index');
     }
 }

@@ -37,8 +37,7 @@
     <br>
     <br>
     <div v-scope="{ mission_lines: [] }">
-        <button class="border rounded p-3 transition bg-gray-300 hover:bg-gray-400"
-                @click.prevent="mission_lines.push({title: '', quantity: 0, price: 0, unity: ''})">
+        <button @click.prevent="mission_lines.push({title: '', quantity: 0, price: 0, unity: ''})">
             Ajouter une ligne
         </button>
 
