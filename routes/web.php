@@ -15,9 +15,10 @@ use \App\Models\MissionLine;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 
 Route::resource('organisations', OrganisationController::class);
 Route::resource('/organisations/{organisation}/missions', MissionController::class, ['only'=>['create', 'store']]);
