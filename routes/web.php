@@ -21,6 +21,8 @@ use Laravel\Socialite\Facades\Socialite;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/login/redirect', function () {
     return Socialite::driver('github')->redirect();
 });
@@ -28,17 +30,32 @@ Route::get('/login/redirect', function () {
 Route::get('/login/callback', function () {
     $user = Socialite::driver('github')->user();
 
-    $databaseUser = User::query()->where(['email' => $user->getEmail()])->first();
+    $databaseUser = User::query()->firstOrNew(['email' => $user->getEmail()]);
 
-    if(!$databaseUser) {
-        User::create([
-            'name' => $user->getNickname(),
+    $databaseUser
+        ->fill([
+            'name' => $user->getName() ?? $user->getNickname(),
             'email' => $user->getEmail()
-        ]);
-    }
+        ])
+        ->save();
+
+    Auth::login($databaseUser);
+
+    return redirect('/');
 });
 
-Route::resource('organisations', OrganisationController::class);
-Route::resource('/organisations/{organisation}/missions', MissionController::class, ['only'=>['create', 'store']]);
-Route::resource('/missions', MissionController::class, ['except'=>['create', 'store']]);
-Route::resource('/organisations/{organisation}/missions/{missions}/lines', MissionLine::class);
+Route::get('/logout', function (){
+    Auth::logout();
+
+    return redirect('/');
+});
+
+Route::resource('organisations', OrganisationController::class)
+    ->middleware('auth');
+Route::resource('/organisations/{organisation}/missions',
+    MissionController::class, ['only'=>['create', 'store']])
+    ->middleware('auth');
+Route::resource('/missions', MissionController::class, ['except'=>['create', 'store']])
+    ->middleware('auth');
+Route::resource('/organisations/{organisation}/missions/{missions}/lines', MissionLine::class)
+    ->middleware('auth');
