@@ -1,3 +1,5 @@
+@include('layouts.app')
+
 <div>
     <h1>Bienvenue sur l'app</h1>
     <br>

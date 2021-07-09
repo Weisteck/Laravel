@@ -1,3 +1,4 @@
+@include('layouts.app')
 <table>
     <tr>
         <th>Id</th>

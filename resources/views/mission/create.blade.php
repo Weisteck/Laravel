@@ -1,3 +1,4 @@
+@include('layouts.app')
 <h1>Creation d'une nouvelle mission :</h1>
 <form method="POST" action="{{route('missions.store', $organisation)}}">
     @csrf

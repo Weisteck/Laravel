@@ -1,3 +1,4 @@
+@include('layouts.app')
 <table>
     <h1>Detail de l'organisation</h1>
     <tr>
