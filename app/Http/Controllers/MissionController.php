@@ -51,7 +51,7 @@ class MissionController extends Controller
 
         $mission->lines()->createMany($request->mission_lines);
         // a modifier ou pas a voir
-        return redirect()->route('organisation.index');
+        return redirect()->route('organisations.index');
     }
 
     /**

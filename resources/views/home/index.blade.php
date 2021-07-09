@@ -10,6 +10,6 @@
     <br>
     <br>
     @if(Auth::check())
-        <a href="{{route('organisation.index')}}">Cliquer ici pour acceder au organisation</a>
+        <a href="{{route('organisations.index')}}">Cliquer ici pour acceder au organisation</a>
     @endif
 </div>

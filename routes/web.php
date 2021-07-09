@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganisationController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
