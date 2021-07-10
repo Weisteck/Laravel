@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginCallbackController;
 use App\Http\Controllers\LoginRedirectController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OrganisationController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -25,13 +26,10 @@ use Laravel\Socialite\Facades\Socialite;
 //    return view('welcome');
 //});
 Route::resource('/', HomeController::class, ['only' => ['index']]) ;
+
 Route::get('/login/redirect', LoginRedirectController::class);
 Route::get('/login/callback', LoginCallbackController::class);
-Route::get('/logout', function (){
-    Auth::logout();
-
-    return redirect('/');
-});
+Route::get('/logout', LogoutController::class);
 
 Route::resource('organisations', OrganisationController::class)
     ->middleware('auth');
