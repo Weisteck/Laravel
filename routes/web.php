@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginRedirectController;
 use App\Http\Controllers\OrganisationController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +25,8 @@ use Laravel\Socialite\Facades\Socialite;
 //});
 Route::resource('/', HomeController::class, ['only' => ['index']]) ;
 
-Route::get('/login/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
+
+Route::get('/login/redirect', LoginRedirectController::class);
 
 Route::get('/login/callback', function () {
     $user = Socialite::driver('github')->user();
