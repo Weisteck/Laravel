@@ -22,7 +22,7 @@ use Laravel\Socialite\Facades\Socialite;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('/', HomeController::class, ['only' => ['index']]) ;
 
 Route::get('/login/redirect', function () {
     return Socialite::driver('github')->redirect();
