@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginCallbackController;
 use App\Http\Controllers\LoginRedirectController;
 use App\Http\Controllers\OrganisationController;
 use App\Models\User;
@@ -24,27 +25,8 @@ use Laravel\Socialite\Facades\Socialite;
 //    return view('welcome');
 //});
 Route::resource('/', HomeController::class, ['only' => ['index']]) ;
-
-
 Route::get('/login/redirect', LoginRedirectController::class);
-
-Route::get('/login/callback', function () {
-    $user = Socialite::driver('github')->user();
-
-    $databaseUser = User::query()->firstOrNew(['email' => $user->getEmail()]);
-
-    $databaseUser
-        ->fill([
-            'name' => $user->getName() ?? $user->getNickname(),
-            'email' => $user->getEmail()
-        ])
-        ->save();
-
-    Auth::login($databaseUser);
-
-    return redirect('/');
-});
-
+Route::get('/login/callback', LoginCallbackController::class);
 Route::get('/logout', function (){
     Auth::logout();
 
